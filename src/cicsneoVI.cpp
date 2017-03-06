@@ -627,26 +627,29 @@ bool cicsneoVI::ProcessRxPacketNeoRed(  unsigned long lCurrentTime,
 
 bool cicsneoVI::ProcessRxPacket(unsigned long lCurrentTime, unsigned char *bPacket, unsigned long lNumberOfBytes)
 {
-	int iCmdByteCount;
-	unsigned long iCount;
-	bool	bAlreadyOverflown = false;
-	bool bOverFlow = false;
-	bool	bSyncMsg = false;
-	unsigned long	bNumberBytes, lNumBytes = 0, lTimeStampIndex;
-	unsigned long	lNumHeaderBytes, lNumISOBytes, lNumJBytes = 0, iNumIFRBytes = 0, lNumJ1708Bytes;
-	unsigned long lNumJ1850VPWBytes;
-	bool bMessageNetID,bMainPicBuffOver, bKeepRunning=false;
-	bool bEndOfLongMessage = false;
-	unsigned char * bBytePointer;
+//	int iCmdByteCount;
+//	unsigned long iCount;
+//	bool	bAlreadyOverflown = false;
+//	bool bOverFlow = false;
+//	bool	bSyncMsg = false;
+//	unsigned long	bNumberBytes, lNumBytes = 0;
+	unsigned long lTimeStampIndex;
+//	unsigned long	lNumHeaderBytes, lNumISOBytes, lNumJBytes = 0, iNumIFRBytes = 0, lNumJ1708Bytes;
+//	unsigned long lNumJ1850VPWBytes;
+	bool bMessageNetID;
+	bool bMainPicBuffOver;
+//	bool bKeepRunning=false;
+//	bool bEndOfLongMessage = false;
+//	unsigned char * bBytePointer;
 	unsigned long lNetwork;
-	icsSpyMessageLong stTestMsg;
-	int iFirstByte;
-	int iChecksum;
-	bool bChecksumError;
-	unsigned char CheckSum = 0; //J1708
-	bool bLongMsgSegment = false;
-	short sNum;
-    bool netid_already_set = false;
+//	icsSpyMessageLong stTestMsg;
+//	int iFirstByte;
+//	int iChecksum;
+//	bool bChecksumError;
+//	unsigned char CheckSum = 0; //J1708
+//	bool bLongMsgSegment = false;
+//	short sNum;
+//    bool netid_already_set = false;
 			
 	bMainPicBuffOver =false;
 			
@@ -794,10 +797,10 @@ bool cicsneoVI::Process3rdGenerationCANRx(    unsigned long lCurrentTime,
 
 bool cicsneoVI::CloseDevice(void)
 {
-	int iRetVal;
+	bool iRetVal = true;
 	
 	if(!m_bDeviceOpen)
-		return true;
+		return iRetVal;
         
     m_pRxThread->End();
 
@@ -813,7 +816,7 @@ bool cicsneoVI::CloseDevice(void)
 	m_bDeviceOpen = false;
     m_bneoShutdown = true;
 
-	return true;
+	return iRetVal;
 }
 
 bool cicsneoVI::SetLatencyTimer(unsigned char latency)
@@ -844,4 +847,6 @@ int cicsneoVI::GetTimeStampForMsg(icsSpyMessage *msg, double *pTimeStamp)
 {
 	if(pTimeStamp)
 		*pTimeStamp = (NEOVI_RED_TIMESTAMP_2_25NS * ((double)msg->TimeHardware2)) + (NEOVI_RED_TIMESTAMP_1_25NS * ((double)msg->TimeHardware));
+
+	return 0;
 }

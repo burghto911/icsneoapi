@@ -62,7 +62,7 @@ int  ICSCC icsneoGetErrorInfo(unsigned long ulErrorNumber, char *szErrorDescript
                         int *iMaxLengthShort, int *iMaxLengthLong, int *iErrorSeverity, int *iRestartNeeded);
 int  ICSCC icsneoGetErrorMessages(void *hObject, int *pErrorMsgs, int *pNumberOfErrors);			
 int  ICSCC icsneoEnableNetworkRXQueue(void *hObject, int iEnable);
-int  ICSCC icsneoGetVCAN3Settings(void *hObject, SVCAN3Settings *pSettings, int iNumBytes);
+int  ICSCC icsneoGetVCAN3Settings(void *hObject, SVCAN3Settings *pSettings, int *iNumBytes);
 int  ICSCC icsneoSetVCAN3Settings(void *hObject, SVCAN3Settings *pSettings, int iNumBytes, int bSaveToEEPROM);
 int  ICSCC icsneoGetFireSettings(void *hObject, SFireSettings *pSettings, int iNumBytes);
 int  ICSCC icsneoSetFireSettings(void *hObject, SFireSettings *pSettings, int iNumBytes, int bSaveToEEPROM);

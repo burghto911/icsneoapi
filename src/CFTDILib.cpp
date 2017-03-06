@@ -290,17 +290,20 @@ bool CFTDILibLinux::SetLatencyTimer(unsigned char latency)
 
 bool CFTDILibLinux::PurgeBuffers(void)
 {
-	int iRetVal;
+	bool iRetVal = true;
 	
 	if(!m_bDeviceOpen)
-		return false;
+		iRetVal = false;
+
 #ifndef NO_FTDI
-		
-	ftdi_usb_purge_rx_buffer(&m_ftdic);
-	ftdi_usb_purge_tx_buffer(&m_ftdic);
+	if (iRetVal)
+	{
+		ftdi_usb_purge_rx_buffer(&m_ftdic);
+		ftdi_usb_purge_tx_buffer(&m_ftdic);
+	}
 #endif
 
-	return true;
+	return iRetVal;
 }
 
 

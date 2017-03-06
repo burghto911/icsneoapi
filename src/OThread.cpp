@@ -164,7 +164,7 @@ bool OThread::Start(void *pParam, int Priority, int affinity)
 void OThread::End(void)
 {
 	
-	int iRetVal;
+//	int iRetVal;
 	void *Thread_Result;
 	
 	if(!m_thread)
@@ -181,7 +181,8 @@ void OThread::End(void)
 
 	
 
-	iRetVal = pthread_join(m_thread, &Thread_Result);
+//	iRetVal =
+	pthread_join(m_thread, &Thread_Result);
 	
 		
 	m_thread = 0;
